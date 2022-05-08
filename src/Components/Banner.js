@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import bannerImg from '../image/banner.png'
 
-export const Banner = styled.div`
-  width: 100%;
-  height: 210px;
-  background-image: url(${bannerImg});
-  background-position: center;
-  background-size: cover;
+const BannerImage = styled.img`
+width: 100%;
+ height: 210px;
+ background-image: url(${bannerImg});
+background-position: center;
+background-size: cover;
 `;
+const Banner = ()=>{
+    return(
+<>
+<BannerImage/>
+</>
+    )
+}
+export default Banner
