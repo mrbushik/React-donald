@@ -31,7 +31,7 @@ z-index: 1;
   }
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0 0 50px 30px #000;
+    box-shadow: inset 0 0 99px 45px #111;
     transition: box-shadow 500ms;
     &:after {
       opacity: 0;
@@ -46,7 +46,7 @@ const ListItem = ({itemList, setOpenItem}) =>{
            <Item 
              key={item.id}
               img={item.img}
-              onClick={()=>setOpenItem(item.name)}
+              onClick={()=>setOpenItem(item)}
               >
                <p>{item.name}</p> 
                <p>{item.price.toLocaleString('ru-RU',

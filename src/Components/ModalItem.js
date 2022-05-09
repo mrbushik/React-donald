@@ -5,7 +5,7 @@ position: fixed;
 display: flex;
 justify-content: center;
 align-items: center;
-top: 0;
+top: 35px;
 left: 0;
 width: 100%;
 height: 100%;
@@ -17,11 +17,30 @@ background-color: #fff;
 width: 600px;
 height: 600px;
 `;
-const ModalItem =()=>{
+const Banner = styled.div`
+width: 100%;
+height: 200px;
+background-image: url(${({img})=> img});
+background-size: cover;
+margin-bottom: 20px
+`;
+const ModalItem =({openItem, setOpenItem})=>{
+    function closeModal (e){
+if(e.target.id === 'overlay'){
+    setOpenItem(null)
+}
+    }
+    if(!openItem) return null;
     return (
-<Overlay>
-<Modal>test</Modal>
+<Overlay id="overlay" onClick={closeModal}>
+<Modal>
+<Banner img={openItem.img}/>
+{openItem.name}
+<br/>
+{openItem.price}
+</Modal>
 </Overlay>
     )
 }
+
 export default ModalItem;

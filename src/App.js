@@ -5,14 +5,13 @@ import Menu from './Components/Menu';
 import ModalItem from './Components/ModalItem';
 
 function App() {
-  const [openItem, setOpenItem] = React.useState('');
-  console.log('item', openItem);
+  const [openItem, setOpenItem] = React.useState(null);
   return (
     <>
       <GlobalStyle/>
         <NavBar/>
         <Menu setOpenItem={setOpenItem}/>
-        <ModalItem/>
+        <ModalItem openItem={openItem} setOpenItem={setOpenItem}/>
     </>
     
   );
