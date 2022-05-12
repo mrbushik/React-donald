@@ -1,13 +1,14 @@
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
 import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
 import { Toppings } from './Toppings';
-import { Choices } from './Choices';
 import { useTopping } from '../Hooks/useToppings';
+import { Choices } from './Choices';
 import { useChoices } from '../Hooks/useChoices';
+
 const Overlay = styled.div`
   position: fixed;
   display: flex;
@@ -94,17 +95,13 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
           </HeaderContent>
           <CountItem {...counter} />
           {openItem.toppings && <Toppings {...toppings} />}
-          {openItem.choices && <Choices {...choices} openItem={openItem}/>}
+          {openItem.choices && <Choices {...choices} openItem={openItem} />}
           <TotalPriceItem>
             <span>Цена:</span>
             <span>{formatCurrency(totalPriceItems(order))}</span>
           </TotalPriceItem>
-          {/* <ButtonCheckout 
-          onClick={addToOrder}
-          disabled={order.choices && !order.choice}
-          >Добавить</ButtonCheckout> */}
-          <ButtonCheckout onClick={addToOrder} disabled={order.choices && !order.choice}>Добавить</ButtonCheckout>
         </Content>
+        <ButtonCheckout onClick={addToOrder} disabled={order.choices && !order.choice}>Добавить</ButtonCheckout>
       </Modal>
     </Overlay>
   );
