@@ -1,6 +1,4 @@
-import {
-  useState
-} from 'react';
+import {useState} from 'react';
 
 const getTopping = toppings => toppings && toppings.map(item => ({
   name: item,

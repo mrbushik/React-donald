@@ -19,4 +19,10 @@ export const ButtonCheckout = styled.button`
   &:focus {
     outline-style: #299B01;
   }
+  &:disabled {
+    color: #bbb;
+    background-color: #ccc;
+    border-color: #aaa;
+
+  }
 `;
