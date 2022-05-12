@@ -44,10 +44,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  input,button{
+  input, button {
     font: inherit;
   }
-   input[type='number']{
+
+  input[type='number']{
     -moz-appearance: textfield;
     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
       -webkit-appearance: none;

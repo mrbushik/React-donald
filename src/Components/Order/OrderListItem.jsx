@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import trashImage from '../../image/trash.svg';
-import { totalPriceItems } from '../Functions/secondaryFunction'
-import { formatCurrency } from '../Functions/secondaryFunction'
-
+import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
 
 const OrderItemStyled = styled.li`
   display: flex;
   margin: 15px 0;
+  flex-wrap: wrap;
 `;
 
 const ItemName = styled.span`
@@ -32,11 +31,16 @@ const TrashButton = styled.button`
   background-repeat: no-repeat;
 `;
 
-export const OrderListItem = ({ order }) => (
-  <OrderItemStyled>
-    <ItemName>{order.name}</ItemName>
-    <span>{order.count}</span>
-    <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-    <TrashButton />
-  </OrderItemStyled>
-);
+
+
+export const OrderListItem = ({ order }) => {
+  return (
+    <OrderItemStyled>
+      <ItemName>{order.name}</ItemName>
+      <span>{order.count}</span>
+      <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
+      <TrashButton />
+    
+    </OrderItemStyled>
+  );
+};

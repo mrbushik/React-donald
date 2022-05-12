@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { formatCurrency } from '../Functions/secondaryFunction'
+import { formatCurrency } from '../Functions/secondaryFunction';
 
 const List = styled.ul`
   display: flex;
@@ -34,7 +34,7 @@ const Item = styled.li`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0 50px 127px 10px #000;
+    box-shadow: inset 0 0 50px 30px #000;
     transition: box-shadow 500ms;
     &:after {
       opacity: 0;
