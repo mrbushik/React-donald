@@ -31,16 +31,24 @@ const TrashButton = styled.button`
   background-repeat: no-repeat;
 `;
 
-
+const Toppings = styled.div`
+  font-size: 14px;
+  color: #9A9A9A;
+  width: 100%;
+`;
 
 export const OrderListItem = ({ order }) => {
+  
+  const toppings = order.topping.filter(item => item.checked === true).map(item => item.name).join(', ');
+  
   return (
     <OrderItemStyled>
       <ItemName>{order.name}</ItemName>
       <span>{order.count}</span>
       <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
       <TrashButton />
-    
+      {toppings && <Toppings key={order.id}>Допы: {toppings}
+      </Toppings>}
     </OrderItemStyled>
   );
 };
