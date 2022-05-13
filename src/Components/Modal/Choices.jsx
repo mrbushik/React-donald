@@ -1,33 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import { CheckoutStyleWrap, CheckoutStyleLabel, CheckoutStyleInput } from '../Style/CheckoutStyle';
 
-const ChoiceWrap = styled.div`
-  max-width: 500px;
-  margin: 0 auto;
-  column-count: 2;
-  column-gap: 15px;
-`;
-const ChoiceRadio = styled.input`
-  cursor: pointer;
-  margin-right: 5px;
-  `;
-const ChoiceLabel = styled.div`
-  cursor: pointer;
-  display: block;
-  `;
 export function Choices({ openItem, choice, changeChoice }) {
-    return (
-        <>
-            <h3>Добавки</h3>
-            <ChoiceWrap>
-                {openItem.choices.map((item, i) => (
-                    <ChoiceLabel key={i}>
-                        <ChoiceRadio type="radio" checked={choice === item} value={item} onChange={changeChoice}
-                        />
-                        {item}
-                    </ChoiceLabel>
-                ))}
-            </ChoiceWrap>
-        </>
-    )
+  return (
+    <>
+      <h3>Выбирайте:</h3>
+      <CheckoutStyleWrap>
+        {openItem.choices.map((item, i) => (
+          <CheckoutStyleLabel key={i}>
+            <CheckoutStyleInput type="radio" checked={choice === item} value={item} onChange={changeChoice} />
+            {item}
+          </CheckoutStyleLabel>
+        ))}
+      </CheckoutStyleWrap>
+    </>
+  );
 }

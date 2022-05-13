@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { CountItem } from './CountItem';
