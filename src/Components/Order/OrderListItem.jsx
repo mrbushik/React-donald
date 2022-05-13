@@ -37,10 +37,11 @@ const Toppings = styled.div`
   width: 100%;
 `;
 
-export const OrderListItem = ({ order,index, deleteItem }) => {
+export const OrderListItem = ({ order,index, deleteItem, setOpenItem }) => {
   const toppings = order.topping.filter(item => item.checked).map(item => item.name).join(', ');
+  
   return (
-    <OrderItemStyled>
+    <OrderItemStyled onClick={()=> setOpenItem({...order, index})}>
       <ItemName>{order.name} {order.choice}</ItemName>
       <span>{order.count}</span>
       <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
