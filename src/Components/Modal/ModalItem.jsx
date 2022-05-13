@@ -62,7 +62,7 @@ const Banner = styled.div`
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-  const counter = useCount();
+  const counter = useCount(openItem.count);
   const toppings = useTopping(openItem);
   const choices = useChoices(openItem);
   const isEdit = openItem.index > -1;
@@ -77,6 +77,8 @@ const editOrder = ()=>{
   const newOrders = [...orders];
   newOrders[openItem.index] = order;
   setOrders(newOrders);
+  setOpenItem(null);
+
 }
 
   const order = {
@@ -111,7 +113,7 @@ const editOrder = ()=>{
         <ButtonCheckout 
         onClick={isEdit ? editOrder : addToOrder }
          disabled={order.choices && !order.choice}
-         >Добавить</ButtonCheckout>
+         >{isEdit ?'Редактировать':'Добавить'}</ButtonCheckout>
       </Modal>
     </Overlay>
   );
