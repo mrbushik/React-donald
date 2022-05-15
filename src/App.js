@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <NavBar />
+      <NavBar {...auth}/>
       <Order {...orders}{...openItem} />
       <Menu {...openItem} />
       {openItem.openItem && <ModalItem {...openItem} {...orders} />}
