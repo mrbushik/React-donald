@@ -33,7 +33,7 @@ const ImgLogo = styled.img`
 
 const Login = styled.button`
   color: #ffffff;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   background: transparent;
 `;
@@ -41,14 +41,29 @@ const Login = styled.button`
 const User = styled.div`
 display: flex;
 align-items: center;
+text-align: center;
 `;
 const LogOut = styled.span`
-font-size: 20px;
-font-weight: 700px;
-cursor: position;
+ font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 15px;
+  margin-left: 25px;
 `;
 
-export const NavBar = ({authentication, login}) => (
+const Figure = styled.figure`
+margin: 0 30px;
+`;
+
+const UserName = styled.figcaption`
+cursor: context-menu;
+`;
+const LogInText = styled.figcaption`
+cursor: pointer;
+`;
+
+
+export const NavBar = ({authentication, logIn, logOut}) => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={logoImg} alt="Лого" />
@@ -56,15 +71,18 @@ export const NavBar = ({authentication, login}) => (
     </Logo>
   { authentication ? 
   <User>
-    <figure>
+    <Figure>
         <img src={signImg} alt={authentication.displayName} />
-        <figcaption>{authentication.displayName}</figcaption>
-    </figure>
-      <LogOut title="Выйти">Х</LogOut>
-  </User>
-  :<Login onClick={login} >
-        <img src={signImg} alt="Пользователь" />
-        <p>Войти</p>
-      </Login> }
+          <UserName>{authentication.displayName}</UserName>
+    </Figure>
+      <LogOut title="Выйти" onClick={logOut}>Х</LogOut>
+  </User> :
+  <Login onClick={logIn}>
+<Figure  >
+        <img src={signImg} alt="Войти" />
+          <LogInText>Войти</LogInText>
+      </Figure> 
+  </Login>
+  }
   </NavBarStyled>
 );
