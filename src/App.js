@@ -10,6 +10,7 @@ import { Order } from './Components/Order/Order';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
+import { useTiitle} from './Components/Hooks/useTiitle';
 const firebaseConfig = {
   apiKey: "AIzaSyAgm4Peg4axuwFWiW0Vf76YN1p_ffWA7AE",
   authDomain: "mrdonalds-d84be.firebaseapp.com",
@@ -26,7 +27,7 @@ function App() {
   const auth = useAuth(firebase.auth)
   const openItem = useOpenItem();
   const orders = useOrders();
-
+useTiitle(openItem.openItem);
   return (
     <>
       <GlobalStyle />

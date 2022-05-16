@@ -66,6 +66,7 @@ dataBase.ref('orders').push().set({
   email: authentication.email,
   order: newOrder,
 });
+  setOrders([]);
 }
 
   const deleteItem = index => {
