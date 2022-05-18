@@ -17,7 +17,7 @@ const OrderStyled = styled.section`
   padding: 20px;
 `;
 
-const OrderTitle = styled.h2`
+ export const OrderTitle = styled.h2`
   text-align: center;
   margin-bottom: 30px;
 `;
@@ -28,7 +28,7 @@ const OrderContent = styled.div`
 
 const OrderList = styled.ul``;
 
-const Total = styled.div`
+ export const Total = styled.div`
   display: flex;
   margin: 0 35px 30px;
   & span:first-child {
@@ -36,7 +36,7 @@ const Total = styled.div`
   }
 `;
 
-const TotalPrice = styled.span`
+ export const TotalPrice = styled.span`
   text-align: right;
   min-width: 65px;
   margin-left: 20px;
@@ -46,28 +46,18 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-const rulesData = {
-  itemName: ['name'],
-  price: ['price'],
-  count: ['count'],
-  topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name),
-arr => arr.length ? arr : "no topping"],
-  choice: ['choice', item => item ? item : 'no choices'],
-}
 
-export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase }) => {
 
-  const dataBase = firebaseDatabase()
+export const Order = ({ orders, 
+  setOrders, 
+  setOpenItem, 
+  authentication,
+   logIn, 
+  setOpenOrderConfirm
+  }) => {
 
-const sendOrder = ()=>{
-const newOrder = orders.map(projection(rulesData))
-dataBase.ref('orders').push().set({
-  nameClient: authentication.displayName ,
-  email: authentication.email,
-  order: newOrder,
-});
-  setOrders([]);
-}
+
+
 
   const deleteItem = index => {
     const newOrders = orders.filter((item,i)=>
@@ -100,7 +90,7 @@ dataBase.ref('orders').push().set({
       </Total>
       <ButtonCheckout onClick={()=>{
         if(authentication){
-          sendOrder()
+          setOpenOrderConfirm(true)
         }else{
           logIn()
         }

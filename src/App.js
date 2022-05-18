@@ -11,6 +11,8 @@ import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
 import { useTiitle} from './Components/Hooks/useTiitle';
+import { OrderConfirm } from './Components/Order/OrderConfirm';
+import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 const firebaseConfig = {
   apiKey: "AIzaSyAgm4Peg4axuwFWiW0Vf76YN1p_ffWA7AE",
   authDomain: "mrdonalds-d84be.firebaseapp.com",
@@ -27,21 +29,26 @@ function App() {
   const auth = useAuth(firebase.auth)
   const openItem = useOpenItem();
   const orders = useOrders();
+  const orderConfirm = useOrderConfirm();
 useTiitle(openItem.openItem);
   return (
     <>
-      <GlobalStyle />
+          <GlobalStyle />
       <NavBar {...auth}/>
       <Order
        {...orders}
        {...openItem} 
        {...auth}
-       firebaseDatabase={firebase.database}
+       {...orderConfirm}
        />
       <Menu {...openItem} />
       {openItem.openItem && <ModalItem {...openItem} {...orders} />}
+      {orderConfirm.openOrderConfirm && 
+      <OrderConfirm {...orders} {...auth}{...orderConfirm}
+       firebaseDatabase={firebase.database}/>}
     </>
   );
 }
+
 
 export default App;
