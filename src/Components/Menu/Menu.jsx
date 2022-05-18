@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { Banner } from './Banner';
 import { useFetch } from '../Hooks/useFetch';
+import "./menu.css"
+
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -34,7 +36,18 @@ export const Menu = () => {
           </SectionMenu>
         </> : res.error ?
          <div>Ошибка...</div> :
-         <div>Загрузка...</div>
+          <div className="loadingio-spinner-gear-tyez33rkgf">
+            <div className="ldio-nrqialalqvs">
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
       }
     </MenuStyled>
   );
