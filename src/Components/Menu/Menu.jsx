@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { Banner } from './Banner';
 import { useFetch } from '../Hooks/useFetch';
-import "./menu.css"
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -15,39 +14,28 @@ const SectionMenu = styled.section`
   padding: 30px;
 `;
 
-export const Menu = ({ setOpenItem }) => {
 
+
+export const Menu = () => {
   const res = useFetch();
-const dbMenu = res.response;
+  const dbMenu = res.response;
   return (
     <MenuStyled>
       <Banner />
-   {dbMenu ?  
-   <>
+      {res.response ?
+        <>
           <SectionMenu>
             <h2>Бургеры</h2>
-            <ListItem itemList={dbMenu.burger} setOpenItem={setOpenItem} />
+            <ListItem itemList={dbMenu.burger} />
           </SectionMenu>
           <SectionMenu>
             <h2>Закуски / Напитки</h2>
-            <ListItem itemList={dbMenu.other} setOpenItem={setOpenItem} />
+            <ListItem itemList={dbMenu.other} />
           </SectionMenu>
-   </>:
-        <div className="loadingio-spinner-gear-tyez33rkgf">
-          <div className="ldio-nrqialalqvs">
-            <div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-        </div>
-      </div>
-
+        </> : res.error ?
+         <div>Ошибка...</div> :
+         <div>Загрузка...</div>
       }
     </MenuStyled>
   );
-
-}
+};

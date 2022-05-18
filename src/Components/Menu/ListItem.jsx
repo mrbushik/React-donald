@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { formatCurrency } from '../Functions/secondaryFunction';
+import { Context } from '../Functions/context';
 
 const List = styled.ul`
   display: flex;
@@ -12,13 +13,15 @@ const Item = styled.li`
   position: relative;
   width: 400px;
   height: 155px;
-  background-image: ${({ img }) => `url(${img})`};
+  background-image: ${({ img }) => `url(./${img})`};
   background-position: center;
   background-size: cover;
   font-size: 30px;
   margin-top: 30px;
   margin-right: 30px;
   padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
   color: #fff;
   z-index: 1;
   &:after {
@@ -42,13 +45,16 @@ const Item = styled.li`
   }
 `;
 
-export const ListItem = ({ itemList, setOpenItem }) => (
-  <List>
-    {itemList.map(item => (
-      <Item key={item.id} img={item.img} onClick={() => setOpenItem(item)}>
-        <p>{item.name}</p>
-        <p>{formatCurrency(item.price)}</p>
-      </Item>
-    ))}
-  </List>
-);
+export const ListItem = ({ itemList }) => {
+  const { openItem: { setOpenItem } } = useContext(Context);
+  return (
+    <List>
+      {itemList.map(item => (
+        <Item key={item.id} img={item.img} onClick={() => setOpenItem(item)}>
+          <p>{item.name}</p>
+          <p>{formatCurrency(item.price)}</p>
+        </Item>
+      ))}
+    </List>
+  );
+};
