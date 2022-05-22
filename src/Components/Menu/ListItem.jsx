@@ -37,7 +37,7 @@ const Item = styled.li`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0 0 50px 30px #000;
+   box-shadow: inset 10px 10px 80px 20px #000;
     transition: box-shadow 500ms;
     &:after {
       opacity: 0;
