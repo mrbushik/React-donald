@@ -16,8 +16,6 @@ const SectionMenu = styled.section`
   padding: 30px;
 `;
 
-
-
 export const Menu = () => {
   const res = useFetch();
   const dbMenu = res.response;

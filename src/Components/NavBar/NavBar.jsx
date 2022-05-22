@@ -55,6 +55,7 @@ const LogOut = styled.span`
 
 const Figure = styled.figure`
   margin: 0;
+  
 `;
 
 export const NavBar = () => {
@@ -65,6 +66,7 @@ export const NavBar = () => {
         <ImgLogo src={logoImg} alt="Лого" />
         <H1>MrDonald&apos;s</H1>
       </Logo>
+      <div>
       {authentication ?
         <User>
           <Figure>
@@ -80,6 +82,7 @@ export const NavBar = () => {
           </Figure>
         </Login>
       }
+      </div>      
     </NavBarStyled>
   );
 };
