@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { ButtonCheckout } from '../Style/ButtonCheckout';
-import { Overlay } from '../Style/ModalStyle';
-import { CountItem } from './CountItem';
-import { useCount } from '../Hooks/useCount';
-import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
-import { Toppings } from './Toppings';
-import { useTopping } from '../Hooks/useToppings';
-import { Choices } from './Choices';
-import { useChoices } from '../Hooks/useChoices';
-import { Context, ContextItem } from '../Functions/context';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { ButtonCheckout } from "../Style/ButtonCheckout";
+import { Overlay } from "../Style/ModalStyle";
+import { CountItem } from "./CountItem";
+import { useCount } from "../Hooks/useCount";
+import {
+  totalPriceItems,
+  formatCurrency,
+} from "../Functions/secondaryFunction";
+import { Toppings } from "./Toppings";
+import { useTopping } from "../Hooks/useToppings";
+import { Choices } from "./Choices";
+import { useChoices } from "../Hooks/useChoices";
+import { Context, ContextItem } from "../Functions/context";
 
 const Modal = styled.div`
   background-color: #ffffff;
@@ -54,17 +57,16 @@ const Banner = styled.div`
 export const ModalItem = () => {
   const {
     orders: { orders, setOrders },
-    openItem: { openItem, setOpenItem }
+    openItem: { openItem, setOpenItem },
   } = useContext(Context);
+
   const counter = useCount(openItem);
   const toppings = useTopping(openItem);
   const choices = useChoices(openItem);
   const isEdit = openItem.index > -1;
 
-  const closeModal = event => {
-    if (event.target.id === 'overlay') {
-      setOpenItem(null);
-    }
+  const closeModal = (event) => {
+    if (event.target.id === "overlay") setOpenItem(null);
   };
 
   const order = {
@@ -95,7 +97,9 @@ export const ModalItem = () => {
             <div>{openItem.name}</div>
             <div>{formatCurrency(openItem.price)}</div>
           </HeaderContent>
-          <ContextItem.Provider value={{ counter, toppings, choices, openItem }}>
+          <ContextItem.Provider
+            value={{ counter, toppings, choices, openItem }}
+          >
             <CountItem />
             {openItem.toppings && <Toppings />}
             {openItem.choices && <Choices />}
@@ -108,7 +112,9 @@ export const ModalItem = () => {
         <ButtonCheckout
           onClick={isEdit ? editOrder : addToOrder}
           disabled={order.choices && !order.choice}
-        >{isEdit ? 'Редактировать' : 'Добавить'}</ButtonCheckout>
+        >
+          {isEdit ? "Редактировать" : "Добавить"}
+        </ButtonCheckout>
       </Modal>
     </Overlay>
   );

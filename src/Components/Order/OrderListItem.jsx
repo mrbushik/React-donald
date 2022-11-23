@@ -1,8 +1,11 @@
-import React, { useRef, useContext } from 'react';
-import styled from 'styled-components';
-import trashImage from '../../image/trash.svg';
-import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
-import { Context } from '../Functions/context';
+import React, { useRef, useContext } from "react";
+import styled from "styled-components";
+import trashImage from "../../image/trash.svg";
+import {
+  totalPriceItems,
+  formatCurrency,
+} from "../Functions/secondaryFunction";
+import { Context } from "../Functions/context";
 
 const OrderItemStyled = styled.li`
   display: flex;
@@ -35,17 +38,32 @@ const TrashButton = styled.button`
 
 const Toppings = styled.div`
   font-size: 14px;
-  color: #9A9A9A;
+  color: #9a9a9a;
   width: 100%;
 `;
 
-export const OrderListItem = ({ order, index, deleteItem, }) => {
-  const { openItem: { setOpenItem } } = useContext(Context);
-  const toppings = order.topping.filter(item => item.checked).map(item => item.name).join(', ');
+export const OrderListItem = ({ order, index, deleteItem }) => {
+  const {
+    openItem: { setOpenItem },
+  } = useContext(Context);
+
+  const toppings = order.topping
+    .filter((item) => item.checked)
+    .map((item) => item.name)
+    .join(", ");
+
   const refDeleteButton = useRef(null);
+
   return (
-    <OrderItemStyled onClick={event => event.target !== refDeleteButton.current && setOpenItem({ ...order, index })}>
-      <ItemName>{order.name} {order.choice}</ItemName>
+    <OrderItemStyled
+      onClick={(event) =>
+        event.target !== refDeleteButton.current &&
+        setOpenItem({ ...order, index })
+      }
+    >
+      <ItemName>
+        {order.name} {order.choice}
+      </ItemName>
       <span>{order.count}</span>
       <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
       <TrashButton ref={refDeleteButton} onClick={() => deleteItem(index)} />

@@ -1,10 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ListItem } from './ListItem';
-import { Banner } from './Banner';
-import { useFetch } from '../Hooks/useFetch';
-import "./menu.css"
-
+import React from "react";
+import styled from "styled-components";
+import { ListItem } from "./ListItem";
+import { Banner } from "./Banner";
+import { useFetch } from "../Hooks/useFetch";
+import "./menu.css";
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -19,10 +18,11 @@ const SectionMenu = styled.section`
 export const Menu = () => {
   const res = useFetch();
   const dbMenu = res.response;
+
   return (
     <MenuStyled>
       <Banner />
-      {res.response ?
+      {res.response ? (
         <>
           <SectionMenu>
             <h2>Бургеры</h2>
@@ -32,21 +32,23 @@ export const Menu = () => {
             <h2>Закуски / Напитки</h2>
             <ListItem itemList={dbMenu.other} />
           </SectionMenu>
-        </> : res.error ?
-         <div>Ошибка...</div> :
-          <div className="loadingio-spinner-gear-tyez33rkgf">
-            <div className="ldio-nrqialalqvs">
-              <div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+        </>
+      ) : res.error ? (
+        <div>Ошибка...</div>
+      ) : (
+        <div className="loadingio-spinner-gear-tyez33rkgf">
+          <div className="ldio-nrqialalqvs">
+            <div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
-      }
+        </div>
+      )}
     </MenuStyled>
   );
 };

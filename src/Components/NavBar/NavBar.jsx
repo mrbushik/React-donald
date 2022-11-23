@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import logoImg from '../../image/logo.svg';
-import signImg from '../../image/sign.svg';
-import { Context } from '../Functions/context';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import logoImg from "../../image/logo.svg";
+import signImg from "../../image/sign.svg";
+import { Context } from "../Functions/context";
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -14,7 +14,7 @@ const NavBarStyled = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background-color: #299B01;
+  background-color: #299b01;
   color: #ffffff;
 `;
 
@@ -55,11 +55,13 @@ const LogOut = styled.span`
 
 const Figure = styled.figure`
   margin: 0;
-  
 `;
 
 export const NavBar = () => {
-  const { auth: { authentication, logIn, logOut } } = useContext(Context);
+  const {
+    auth: { authentication, logIn, logOut },
+  } = useContext(Context);
+
   return (
     <NavBarStyled>
       <Logo>
@@ -67,22 +69,25 @@ export const NavBar = () => {
         <H1>MrDonald&apos;s</H1>
       </Logo>
       <div>
-      {authentication ?
-        <User>
-          <Figure>
-            <img src={signImg} alt={authentication.displayName} />
-            <figcaption>{authentication.displayName}</figcaption>
-          </Figure>
-          <LogOut title="Выйти" onClick={logOut}>Х</LogOut>
-        </User> :
-        <Login onClick={logIn}>
-          <Figure>
-            <img src={signImg} alt="Пользователь" />
-            <figcaption>Войти</figcaption>
-          </Figure>
-        </Login>
-      }
-      </div>      
+        {authentication ? (
+          <User>
+            <Figure>
+              <img src={signImg} alt={authentication.displayName} />
+              <figcaption>{authentication.displayName}</figcaption>
+            </Figure>
+            <LogOut title="Выйти" onClick={logOut}>
+              Х
+            </LogOut>
+          </User>
+        ) : (
+          <Login onClick={logIn}>
+            <Figure>
+              <img src={signImg} alt="Пользователь" />
+              <figcaption>Войти</figcaption>
+            </Figure>
+          </Login>
+        )}
+      </div>
     </NavBarStyled>
   );
 };

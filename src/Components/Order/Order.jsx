@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { ButtonCheckout } from '../Style/ButtonCheckout';
-import { OrderTitle, Total, TotalPrice } from '../Style/ModalStyle';
-import { OrderListItem } from './OrderListItem';
-import { totalPriceItems, formatCurrency } from '../Functions/secondaryFunction';
-import { Context } from '../Functions/context';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { ButtonCheckout } from "../Style/ButtonCheckout";
+import { OrderTitle, Total, TotalPrice } from "../Style/ModalStyle";
+import { OrderListItem } from "./OrderListItem";
+import {
+  totalPriceItems,
+  formatCurrency,
+} from "../Functions/secondaryFunction";
+import { Context } from "../Functions/context";
 
 const OrderStyled = styled.section`
   position: fixed;
@@ -30,29 +33,45 @@ const EmptyList = styled.p`
 `;
 
 export const Order = () => {
-  const { auth: { authentication, logIn },
+  const {
+    auth: { authentication, logIn },
     orders: { orders, setOrders },
-    orderConfirm: { setOrderConfirm }
+    orderConfirm: { setOrderConfirm },
   } = useContext(Context);
-  const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
-  const totalCounter = orders.reduce((result, order) => order.count + result, 0);
-  const deleteItem = index => setOrders(orders.filter((item, i) => i !== index));
+
+  const total = orders.reduce(
+    (result, order) => totalPriceItems(order) + result,
+    0
+  );
+
+  const totalCounter = orders.reduce(
+    (result, order) => order.count + result,
+    0
+  );
+
+  const deleteItem = (index) =>
+    setOrders(orders.filter((item, i) => i !== index));
+
   return (
     <OrderStyled>
       <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
       <OrderContent>
-        {orders.length ?
+        {orders.length ? (
           <OrderList>
-            {orders.map((order, index) => <OrderListItem
-              key={index}
-              order={order}
-              index={index}
-              deleteItem={deleteItem}
-            />)}
-          </OrderList> :
-          <EmptyList>Список заказов пуст</EmptyList>}
+            {orders.map((order, index) => (
+              <OrderListItem
+                key={index}
+                order={order}
+                index={index}
+                deleteItem={deleteItem}
+              />
+            ))}
+          </OrderList>
+        ) : (
+          <EmptyList>Список заказов пуст</EmptyList>
+        )}
       </OrderContent>
-      {orders.length ?
+      {orders.length ? (
         <>
           <Total>
             <span>Итого</span>
@@ -61,16 +80,13 @@ export const Order = () => {
           </Total>
           <ButtonCheckout
             onClick={() => {
-              if (authentication) {
-                setOrderConfirm(true);
-              } else {
-                logIn();
-              }
+              authentication ? setOrderConfirm(true) : logIn();
             }}
-          >Оформить</ButtonCheckout>
-        </> :
-        null
-      }
+          >
+            Оформить
+          </ButtonCheckout>
+        </>
+      ) : null}
     </OrderStyled>
   );
 };

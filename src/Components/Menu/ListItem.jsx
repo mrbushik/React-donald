@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { formatCurrency } from '../Functions/secondaryFunction';
-import { Context } from '../Functions/context';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { formatCurrency } from "../Functions/secondaryFunction";
+import { Context } from "../Functions/context";
 
 const List = styled.ul`
   display: flex;
@@ -25,7 +25,7 @@ const Item = styled.li`
   color: #fff;
   z-index: 1;
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -37,7 +37,7 @@ const Item = styled.li`
   }
   &:hover {
     cursor: pointer;
-   box-shadow: inset 10px 10px 80px 20px #000;
+    box-shadow: inset 10px 10px 80px 20px #000;
     transition: box-shadow 500ms;
     &:after {
       opacity: 0;
@@ -46,10 +46,13 @@ const Item = styled.li`
 `;
 
 export const ListItem = ({ itemList }) => {
-  const { openItem: { setOpenItem } } = useContext(Context);
+  const {
+    openItem: { setOpenItem },
+  } = useContext(Context);
+
   return (
     <List>
-      {itemList.map(item => (
+      {itemList.map((item) => (
         <Item key={item.id} img={item.img} onClick={() => setOpenItem(item)}>
           <p>{item.name}</p>
           <p>{formatCurrency(item.price)}</p>
